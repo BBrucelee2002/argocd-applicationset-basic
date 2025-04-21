@@ -12,16 +12,16 @@ spec:
           - env: prod
   template:
     metadata:
-      name: nginx-{{env}}
+      name: 'nginx-{{.env}}'  # Added quotes and dot
     spec:
       project: default
       source:
-        repoURL: https://github.com/BBrucelee2002/argocd-applicationset-basic.git
+        repoURL: 'https://github.com/BBrucelee2002/argocd-applicationset-basic.git'
         targetRevision: HEAD
-        path: apps/{{env}}
+        path: 'apps/{{.env}}'  # Added quotes and dot
       destination:
-        server: https://kubernetes.default.svc
-        namespace: {{env}}
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{.env}}'  # Added quotes and dot
       syncPolicy:
         automated:
           prune: true
