@@ -7,21 +7,21 @@ spec:
   generators:
     - list:
         elements:
-          - env: dev
-          - env: staging
-          - env: prod
+        - env: dev
+        - env: staging
+        - env: prod
   template:
     metadata:
-      name: 'nginx-{{.env}}'  # Added quotes and dot
+      name: 'nginx-{{.env}}'  # Must be quoted
     spec:
       project: default
       source:
         repoURL: 'https://github.com/BBrucelee2002/argocd-applicationset-basic.git'
         targetRevision: HEAD
-        path: 'apps/{{.env}}'  # Added quotes and dot
+        path: 'apps/{{.env}}'  # Must be quoted
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: '{{.env}}'  # Added quotes and dot
+        namespace: '{{.env}}'  # Must be quoted
       syncPolicy:
         automated:
           prune: true
